@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<HTML>
+	<head>
+		<title>CSS 2D Tools</title>
+		<meta charset="UTF-8"/>
+		<style type="text/css" media="screen"> 
+			@import url(./css/main.css);
+			@import url(./css/ui.css);
+            @import url(./css/crop.css);
+		</style>
+		<script type="text/javascript" src="./js/c2t.js"></script>
+		<script type="text/javascript" src="./js/qzfl_lite.js"></script>
+		<script type="text/javascript" src="./js/frame/clip.js"></script>
+		<script type="text/javascript" src="./js/frame/engine.js"></script>
+        <script type="text/javascript" src="./js/crop.js"></script>
+	</head>
+
+	<body>
+		<nav>
+			<ul>
+				<li class="group">
+					<button id="button_new">新建</button>
+					
+					<button id="button_open">导入图片</button>
+				</li>
+				<li class="group">
+					
+					<button id="button_preview">预览</button>
+					<button id="button_publish">导出</button>
+				</li>
+				<li>
+					<button id="button_help">?</button>
+				</li>
+			</ul>
+		</nav>
+		<div id="main">
+			<aside>
+				<h1>画布设置</h1>
+				<ul>
+					<li>宽度： <input type="number" id="canvas_width" value="800" size="10"/></li>
+					<li>高度： <input type="number" id="canvas_height" value="600" size="10"/></li>
+					<li class="right"><button id="button_apply_canvas">应用</button></li>
+				</ul>
+				<h1>内容设置</h1>
+				<ul>
+					<li>排序方式：
+						<select id="select_sort_type"><option value="1">按照文件名</option></select>
+					</li>
+					<li>排序顺序：
+						<select id="select_sort_order"><option value="1">顺序</option><option value="0">逆序</option></select>
+					</li>
+					<li>图片边距：
+						 <input type="number" id="pic_padding" value="0" size="5" disabled="disabled" title="功能接口未支持"/>
+					</li>
+					<li><label><input id="check_autoFix" type="checkbox" checked="checked"/>同时自动调整画布</label></li>
+					<li class="right"><button id="button_sort">排序</button></li>
+				</ul>
+				<h1>预览设置</h1>
+				<ul>
+					<li>帧数: <input type="number" id="preview_frame" value="24" size="2"/></li>
+				</ul>
+			</aside>
+			<div id="content">
+				<div id="content2">
+					<div id="canvas" class="canvas bk" style="width:800px;height:600px"> </div>
+					<div id="you_can_not_see_me"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 对话框直接mask在页面上吧 -->
+		<div id="mask" class="mask" style="display:none">
+			<div id="dialog" class="dialog">
+				<h1></h1>
+				<section></section>
+				<nav><button id="button_dialog_close">关闭</button><span id="expand_buttons"></span></nav>
+			</div>
+		</div>
+		
+		<!-- 提交图片保存 -->
+		<form id="save_form" method="POST" action="http://www.pjhome.net/web/c2t/convert.php" target="_blank" enctype="multipart/form-data" >
+			<input type="hidden" name="data" id="input_dataUrl"/>
+			<input type="hidden" name="filename" id="input_filename" value="test"/>
+			<input type="hidden" name="type" id="input_pngtype" value="32"/>
+			<input type="hidden" name="preview" id="input_preview" value="0"/>
+		</form>
+		<input type="file" id="input_fileSelect" multiple="multiple" accept="image/*"/>
+		<iframe name="save_frame" style="display:none"></iframe>
+	</body>
+</html>
